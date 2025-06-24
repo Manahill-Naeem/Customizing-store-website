@@ -48,9 +48,9 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="hover:text-blue-400"> {/* Link replaced with <a> */}
+                  <a href={link.href} className="hover:text-blue-400">
                     {link.name}
-                  </a> {/* Link replaced with <a> */}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -61,16 +61,16 @@ export default function Footer() {
             <ul className="space-y-4">
               {majorServices.map((service) => (
                 <li key={service.name}>
-                  <a href={service.href} className="hover:text-blue-400 font-medium"> {/* Link replaced with <a> */}
+                  <a href={service.href} className="hover:text-blue-400 font-medium">
                     {service.name}
-                  </a> {/* Link replaced with <a> */}
+                  </a>
                   {service.subServices && (
                     <ul className="mt-2 ml-4 space-y-1">
                       {service.subServices.map((subService) => (
                         <li key={subService.name}>
-                          <a href={subService.href} className="text-gray-400 hover:text-blue-400 text-sm"> {/* Link replaced with <a> */}
+                          <a href={subService.href} className="text-gray-400 hover:text-blue-400 text-sm">
                             {subService.name}
-                          </a> {/* Link replaced with <a> */}
+                          </a>
                         </li>
                       ))}
                     </ul>
@@ -95,9 +95,9 @@ export default function Footer() {
               <p>© {new Date().getFullYear()} ARL Laboratory Services Pty Ltd. All rights reserved</p>
             </div>
             <div className="flex space-x-4">
-              <a href="/policies" className="hover:text-blue-400">Our Policies</a> {/* Link replaced with <a> */}
-              <a href="/copyright" className="hover:text-blue-400">Copyright</a> {/* Link replaced with <a> */}
-              <a href="/privacy" className="hover:text-blue-400">Privacy Policy</a> {/* Link replaced with <a> */}
+              <a href="/policies" className="hover:text-blue-400">Our Policies</a>
+              <a href="/copyright" className="hover:text-blue-400">Copyright</a>
+              <a href="/privacy" className="hover:text-blue-400">Privacy Policy</a>
             </div>
           </div>
         </div>

@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-// import Image from 'next/image'; // next/image ko hata diya gaya hai
+// import Link from 'next/link'; // next/link ko hata diya gaya hai
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +12,6 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
-      // Add background when scrolled down
       setScrolled(currentScrollPos > 10);
     };
 
@@ -26,7 +24,6 @@ export default function Navbar() {
     setOpenCategory('');
   };
 
-  // NavLinks array definition
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
@@ -81,8 +78,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            {/* 'Image' component ko 'img' tag se replace kiya gaya */}
+          <a href="/" className="flex-shrink-0">
             <img
               src="/logo.png"
               alt="ARL Logo"
@@ -91,12 +87,9 @@ export default function Navbar() {
               className={`transition-opacity duration-300 ${
                 scrolled ? 'opacity-100' : 'opacity-0'
               }`}
-              onError={(e) => { // Error handling for the logo image
-                (e.target as HTMLImageElement).srcset = '';
-                (e.target as HTMLImageElement).src = 'https://placehold.co/120x40/cccccc/000000?text=Logo'; // Fallback placeholder
-              }}
+              // onError prop removed
             />
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
@@ -108,7 +101,7 @@ export default function Navbar() {
                 >
                   <button
                     onClick={link.dropdown ? toggleServices : undefined}
-                    onDoubleClick={link.dropdown ? () => { // Ensure window.location.href is handled clientside only
+                    onDoubleClick={link.dropdown ? () => {
                         if (typeof window !== 'undefined') {
                             window.location.href = '/services';
                         }
@@ -132,8 +125,7 @@ export default function Navbar() {
                         </svg>
                       </span>
                     ) : (
-                      // Direct Link for non-dropdown items
-                      <Link href={link.href}>{link.label}</Link>
+                      <a href={link.href}>{link.label}</a>
                     )}
                   </button>
                   {link.dropdown && servicesOpen && (
@@ -141,12 +133,12 @@ export default function Navbar() {
                       {link.dropdown.map((category) => (
                         <div key={category.id} className="px-4 py-2">
                           <div className="w-full text-left text-sm font-semibold text-white mb-2 flex justify-between items-center group">
-                            <Link
+                            <a
                               href={category.href}
                               className="flex-grow hover:text-gray-200 transition-colors duration-200"
                             >
                               {category.title}
-                            </Link>
+                            </a>
                             {category.items.length > 0 && (
                               <button
                                 onClick={() => setOpenCategory(openCategory === category.id ? '' : category.id)}
@@ -166,13 +158,13 @@ export default function Navbar() {
                           {openCategory === category.id && category.items.length > 0 && (
                             <div className="space-y-2 pl-4">
                               {category.items.map((item) => (
-                                <Link
+                                <a
                                   key={item.href}
                                   href={item.href}
                                   className="block text-sm text-gray-200 hover:text-white hover:bg-[#004488] px-2 py-1 rounded transition-colors duration-200"
                                 >
                                   {item.label}
-                                </Link>
+                                </a>
                               ))}
                             </div>
                           )}
@@ -217,6 +209,7 @@ export default function Navbar() {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
+                  {/* Duplicate strokeLinecap removed */}
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -241,7 +234,7 @@ export default function Navbar() {
                 {link.dropdown ? (
                   <button
                     onClick={toggleServices}
-                    onDoubleClick={() => { // Ensure window.location.href is handled clientside only
+                    onDoubleClick={() => {
                         if (typeof window !== 'undefined') {
                             window.location.href = '/services';
                         }
@@ -259,25 +252,25 @@ export default function Navbar() {
                     </svg>
                   </button>
                 ) : (
-                  <Link
+                  <a
                     href={link.href}
                     className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#004488] transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
-                  </Link>
+                  </a>
                 )}
                 {link.dropdown && servicesOpen && (
                   <div className="pl-4 space-y-2">
                     {link.dropdown.map((category) => (
                       <div key={category.id} className="py-2">
                         <div className="flex items-center">
-                          <Link
+                          <a
                             href={category.href}
                             className="flex-grow px-3 text-sm font-semibold text-white hover:text-gray-200 transition-colors duration-200"
                           >
                             {category.title}
-                          </Link>
+                          </a>
                           {category.items.length > 0 && (
                             <button
                               onClick={() => setOpenCategory(openCategory === category.id ? '' : category.id)}
@@ -297,14 +290,14 @@ export default function Navbar() {
                         {openCategory === category.id && category.items.length > 0 && (
                           <div className="space-y-1 mt-1 pl-4">
                             {category.items.map((item) => (
-                              <Link
+                              <a
                                 key={item.href}
                                 href={item.href}
                                 className="block text-sm text-gray-200 hover:text-white hover:bg-[#004488] px-3 py-1 transition-colors duration-200"
                                 onClick={() => setIsOpen(false)}
                               >
                                 {item.label}
-                              </Link>
+                              </a>
                             ))}
                           </div>
                         )}

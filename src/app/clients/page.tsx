@@ -1,38 +1,31 @@
-// This file defines the ClientsPage component, displaying testimonials,
-// success stories, and industries served by ARL Laboratory Services.
-// It uses standard <img> tags instead of Next.js Image component to
-// avoid potential build errors related to image optimization in certain environments.
+// src/app/clients/page.tsx
+// onError prop removed from <img> tags to resolve "Event handlers cannot be passed to Client Component props" during static generation.
 
 export default function ClientsPage() {
-  // Array of client testimonials, each containing name, position, company,
-  // image path, and their quote about ARL Laboratory Services.
   const testimonials = [
     {
       name: 'John Smith',
       position: 'Project Manager',
       company: 'ABC Engineering',
-      // Temporarily use a simple placeholder image URL to bypass potential image issues.
-      image: 'https://placehold.co/64x64/cccccc/000000?text=JS', // Changed
+      image: '/clients/abc-engineering.jpg', // Path to client's image/logo.
       quote: 'ARL has been an invaluable partner in our projects. Their expertise in NDT and mechanical testing has helped us maintain the highest quality standards.',
     },
     {
       name: 'Sarah Johnson',
       position: 'Quality Assurance Director',
       company: 'XYZ Manufacturing',
-      image: 'https://placehold.co/64x64/cccccc/000000?text=SJ', // Changed
+      image: '/clients/xyz-manufacturing.jpg', // Path to client's image/logo.
       quote: 'The team at ARL consistently delivers accurate and reliable testing results. Their professionalism and attention to detail are unmatched.',
     },
     {
       name: 'Michael Chen',
       position: 'Operations Manager',
       company: 'Global Petrochemicals',
-      image: 'https://placehold.co/64x64/cccccc/000000?text=MC', // Changed
+      image: '/clients/global-petrochemicals.jpg', // Path to client's image/logo.
       quote: 'Working with ARL has significantly improved our inspection processes. Their specialized services have helped us identify potential issues before they become problems.',
     },
   ];
 
-  // Array of success stories, highlighting ARL's achievements in various projects.
-  // Each story includes a title, client, challenge faced, solution provided, and the result.
   const successStories = [
     {
       title: 'Large-Scale Storage Tank Inspection',
@@ -59,29 +52,21 @@ export default function ClientsPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section: Displays a large background image and a title for the page. */}
+      {/* Hero Section */}
       <section className="relative h-[400px] w-full overflow-hidden">
-        {/* Overlay to darken the background image for better text readability */}
         <div className="absolute inset-0 bg-black/50 z-10" />
-        {/* Background image for the hero section using a standard <img> tag */}
         <img
-          // Temporarily use a placeholder image for the hero section.
-          src="https://placehold.co/1200x400/cccccc/000000?text=Hero+Image" // Changed
+          src="/hero-bg.jpg" // Placeholder for the actual hero background image path.
           alt="Our Clients"
-          className="object-cover w-full h-full" // Tailwind classes for full width, height, and object-fit.
-          // Fallback in case the image fails to load.
-          onError={(e) => {
-            (e.target as HTMLImageElement).srcset = '';
-            (e.target as HTMLImageElement).src = 'https://placehold.co/1200x400/cccccc/000000?text=Hero+Image+Fallback'; // Fallback placeholder image.
-          }}
+          className="object-cover w-full h-full"
+          // onError prop removed
         />
-        {/* Content of the hero section, positioned centrally. */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">Our Clients</h1>
         </div>
       </section>
 
-      {/* Testimonials Section: Displays client testimonials in a grid layout. */}
+      {/* Testimonials Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Client Testimonials</h2>
@@ -90,16 +75,11 @@ export default function ClientsPage() {
               <div key={testimonial.name} className="bg-white p-6 rounded-lg shadow-md">
                 <div className="flex items-center mb-4">
                   <div className="relative w-16 h-16 rounded-full overflow-hidden mr-4">
-                    {/* Testimonial author's image using a standard <img> tag */}
                     <img
-                      src={testimonial.image} // Now using the placeholder URL from testimonials array
+                      src={testimonial.image}
                       alt={testimonial.name}
-                      className="object-cover w-full h-full rounded-full" // Styling for a circular image.
-                      // Fallback for testimonial image.
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).srcset = '';
-                        (e.target as HTMLImageElement).src = `https://placehold.co/64x64/cccccc/000000?text=TM`; // General fallback text
-                      }}
+                      className="object-cover w-full h-full rounded-full"
+                      // onError prop removed
                     />
                   </div>
                   <div>
@@ -115,7 +95,7 @@ export default function ClientsPage() {
         </div>
       </section>
 
-      {/* Success Stories Section: Highlights key project achievements in a grid. */}
+      {/* Success Stories Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Success Stories</h2>
@@ -147,7 +127,7 @@ export default function ClientsPage() {
         </div>
       </section>
 
-      {/* Client Industries Section: Lists the industries ARL serves. */}
+      {/* Client Industries Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Industries We Serve</h2>
