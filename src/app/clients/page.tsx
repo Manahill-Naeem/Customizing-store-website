@@ -11,21 +11,22 @@ export default function ClientsPage() {
       name: 'John Smith',
       position: 'Project Manager',
       company: 'ABC Engineering',
-      image: '/clients/abc-engineering.jpg', // Path to client's image/logo.
+      // Temporarily use a simple placeholder image URL to bypass potential image issues.
+      image: 'https://placehold.co/64x64/cccccc/000000?text=JS', // Changed
       quote: 'ARL has been an invaluable partner in our projects. Their expertise in NDT and mechanical testing has helped us maintain the highest quality standards.',
     },
     {
       name: 'Sarah Johnson',
       position: 'Quality Assurance Director',
       company: 'XYZ Manufacturing',
-      image: '/clients/xyz-manufacturing.jpg', // Path to client's image/logo.
+      image: 'https://placehold.co/64x64/cccccc/000000?text=SJ', // Changed
       quote: 'The team at ARL consistently delivers accurate and reliable testing results. Their professionalism and attention to detail are unmatched.',
     },
     {
       name: 'Michael Chen',
       position: 'Operations Manager',
       company: 'Global Petrochemicals',
-      image: '/clients/global-petrochemicals.jpg', // Path to client's image/logo.
+      image: 'https://placehold.co/64x64/cccccc/000000?text=MC', // Changed
       quote: 'Working with ARL has significantly improved our inspection processes. Their specialized services have helped us identify potential issues before they become problems.',
     },
   ];
@@ -64,15 +65,17 @@ export default function ClientsPage() {
         <div className="absolute inset-0 bg-black/50 z-10" />
         {/* Background image for the hero section using a standard <img> tag */}
         <img
-          src="/hero-bg.jpg" // Ensure this image path is correct or replace with a placeholder.
+          // Temporarily use a placeholder image for the hero section.
+          src="https://placehold.co/1200x400/cccccc/000000?text=Hero+Image" // Changed
           alt="Our Clients"
           className="object-cover w-full h-full" // Tailwind classes for full width, height, and object-fit.
           // Fallback in case the image fails to load.
           onError={(e) => {
             (e.target as HTMLImageElement).srcset = '';
-            (e.target as HTMLImageElement).src = 'https://placehold.co/1200x400/cccccc/000000?text=Our+Clients+Header';
+            (e.target as HTMLImageElement).src = 'https://placehold.co/1200x400/cccccc/000000?text=Hero+Image+Fallback'; // Fallback placeholder image.
           }}
         />
+        {/* Content of the hero section, positioned centrally. */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">Our Clients</h1>
         </div>
@@ -89,13 +92,13 @@ export default function ClientsPage() {
                   <div className="relative w-16 h-16 rounded-full overflow-hidden mr-4">
                     {/* Testimonial author's image using a standard <img> tag */}
                     <img
-                      src={testimonial.image}
+                      src={testimonial.image} // Now using the placeholder URL from testimonials array
                       alt={testimonial.name}
                       className="object-cover w-full h-full rounded-full" // Styling for a circular image.
                       // Fallback for testimonial image.
                       onError={(e) => {
                         (e.target as HTMLImageElement).srcset = '';
-                        (e.target as HTMLImageElement).src = `https://placehold.co/64x64/cccccc/000000?text=${testimonial.name.charAt(0)}`;
+                        (e.target as HTMLImageElement).src = `https://placehold.co/64x64/cccccc/000000?text=TM`; // General fallback text
                       }}
                     />
                   </div>
