@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-// import Link from 'next/link'; // next/link ko hata diya gaya hai
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,13 +80,11 @@ export default function Navbar() {
           <a href="/" className="flex-shrink-0">
             <img
               src="/Optivance_Inspect_Logo.png"
-              alt="Optivance Inspect Logo"
+              alt="ARL Logo"
               width={120}
               height={40}
-              className={`transition-opacity duration-300 ${
-                scrolled ? 'opacity-100' : 'opacity-0'
-              }`}
-              // onError prop removed
+              // opacity-100 ko hamesha rakha hai
+              className="transition-opacity duration-300 opacity-100" // Logo hamesha visible
             />
           </a>
 
@@ -209,7 +206,6 @@ export default function Navbar() {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  {/* Duplicate strokeLinecap removed */}
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
