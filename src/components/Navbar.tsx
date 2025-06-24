@@ -80,8 +80,8 @@ export default function Navbar() {
           {/* Logo */}
           <a href="/" className="flex-shrink-0">
             <img
-              src="/logo.png"
-              alt="ARL Logo"
+              src="/Optivance_Inspect_Logo.png"
+              alt="Optivance Inspect Logo"
               width={120}
               height={40}
               className={`transition-opacity duration-300 ${
