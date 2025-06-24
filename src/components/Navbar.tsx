@@ -71,7 +71,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-md' : 'bg-transparent'
+        scrolled ? 'bg-[#003366] shadow-md' : 'bg-transparent' // Scroll karne par footer ka color
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -83,7 +83,6 @@ export default function Navbar() {
               alt="ARL Logo"
               width={120}
               height={40}
-              // opacity-100 ko hamesha rakha hai
               className="transition-opacity duration-300 opacity-100" // Logo hamesha visible
             />
           </a>
@@ -105,8 +104,8 @@ export default function Navbar() {
                     } : undefined}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       scrolled
-                        ? 'text-gray-900 hover:bg-gray-100'
-                        : 'text-white hover:bg-white/10'
+                        ? 'text-white hover:bg-white/10' // Scroll karne par white text
+                        : 'text-white hover:bg-white/10' // Bina scroll ke bhi white text
                     }`}
                   >
                     {link.dropdown ? (
@@ -179,7 +178,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`inline-flex items-center justify-center p-2 rounded-md ${
-                scrolled ? 'text-gray-900' : 'text-white'
+                scrolled ? 'text-white' : 'text-white' // Scroll karne par white text
               } hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white`}
             >
               <span className="sr-only">Open main menu</span>
