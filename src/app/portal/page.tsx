@@ -1,173 +1,144 @@
-'use client';
+'use client'; // This component needs client-side interactivity
 
 import { useState } from 'react';
-import Image from 'next/image';
+import { useRouter } from 'next/navigation'; // For redirection after login
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { app } from '../../lib/firebase'; // Adjust path if firebase.ts is elsewhere
 
-export default function PortalPage() {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+export default function PortalLoginPage() {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
+  const [isLoginMode, setIsLoginMode] = useState<boolean>(true); // Toggle between Login and Signup
+  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter(); // Initialize useRouter for navigation
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle login here
-    console.log('Login submitted:', formData);
+  const auth = getAuth(app); // Get the Firebase Auth instance
+
+  // Function to handle user login
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent default form submission
+    setError(null); // Clear previous errors
+    setLoading(true); // Set loading state
+
+    try {
+      // Attempt to sign in with email and password
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log('User logged in successfully!');
+      // Redirect to the protected dashboard page on successful login
+      router.push('/portal/dashboard');
+    } catch (err: any) {
+      // Handle different authentication errors
+      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
+        setError('Invalid email or password.');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Please enter a valid email address.');
+      } else {
+        setError(err.message || 'An unexpected error occurred during login.');
+      }
+      console.error('Login error:', err);
+    } finally {
+      setLoading(false); // Reset loading state
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  // Function to handle user signup
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent default form submission
+    setError(null); // Clear previous errors
+    setLoading(true); // Set loading state
 
-  const portalFeatures = [
-    {
-      title: 'Project Tracking',
-      description: 'Monitor the progress of your projects in real-time',
-      icon: '📊',
-    },
-    {
-      title: 'Reports & Certificates',
-      description: 'Access and download your inspection reports and certificates',
-      icon: '📄',
-    },
-    {
-      title: 'Document Management',
-      description: 'Store and manage all your project documents securely',
-      icon: '🗂️',
-    },
-    {
-      title: 'Communication',
-      description: 'Direct communication with our team and project updates',
-      icon: '💬',
-    },
-  ];
+    try {
+      // Attempt to create a new user with email and password
+      await createUserWithEmailAndPassword(auth, email, password);
+      console.log('User signed up successfully!');
+      // Redirect to the protected dashboard page on successful signup
+      router.push('/portal/dashboard');
+    } catch (err: any) {
+      // Handle different authentication errors during signup
+      if (err.code === 'auth/email-already-in-use') {
+        setError('This email is already in use. Please try logging in or use a different email.');
+      } else if (err.code === 'auth/weak-password') {
+        setError('Password should be at least 6 characters.');
+      } else {
+        setError(err.message || 'An unexpected error occurred during signup.');
+      }
+      console.error('Signup error:', err);
+    } finally {
+      setLoading(false); // Reset loading state
+    }
+  };
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[400px]">
-        <div className="absolute inset-0 bg-black/50 z-10" />
-        <Image
-          src="/hero-bg.jpg"
-          alt="Client Portal"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white">Client Portal</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            {isLoginMode ? 'Client Login' : 'Client Signup'}
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Or{' '}
+            <button
+              onClick={() => setIsLoginMode(!isLoginMode)}
+              className="font-medium text-[#003366] hover:text-[#004488] focus:outline-none focus:underline"
+            >
+              {isLoginMode ? 'Create an account' : 'Login to your account'}
+            </button>
+          </p>
         </div>
-      </section>
-
-      {/* Login Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Login Form */}
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold mb-6">Login to Your Account</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    required
-                  />
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <input
-                      id="remember-me"
-                      name="remember-me"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                    />
-                    <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
-                      Remember me
-                    </label>
-                  </div>
-
-                  <div className="text-sm">
-                    <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                      Forgot your password?
-                    </a>
-                  </div>
-                </div>
-
-                <div>
-                  <button
-                    type="submit"
-                    className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                  >
-                    Sign in
-                  </button>
-                </div>
-              </form>
+        <form className="mt-8 space-y-6" onSubmit={isLoginMode ? handleLogin : handleSignup}>
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+              <strong className="font-bold">Error!</strong>
+              <span className="block sm:inline ml-2">{error}</span>
             </div>
-
-            {/* Features Section */}
+          )}
+          <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <h2 className="text-2xl font-bold mb-6">Portal Features</h2>
-              <div className="grid grid-cols-1 gap-6">
-                {portalFeatures.map((feature) => (
-                  <div key={feature.title} className="bg-white p-6 rounded-lg shadow-md">
-                    <div className="flex items-start">
-                      <span className="text-3xl mr-4">{feature.icon}</span>
-                      <div>
-                        <h3 className="text-lg font-semibold">{feature.title}</h3>
-                        <p className="text-gray-600 mt-1">{feature.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <label htmlFor="email-address" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="email-address"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-[#003366] focus:border-[#003366] focus:z-10 sm:text-sm"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="sr-only">
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-[#003366] focus:border-[#003366] focus:z-10 sm:text-sm"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* New Client Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">New to Optivance Inspect?</h2>
-          <p className="text-gray-600 mb-8">
-            If you're a new client and would like to access our portal, please contact our team to set up your account.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          >
-            Contact Us
-          </a>
-        </div>
-      </section>
+          <div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#003366] hover:bg-[#004488] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#003366] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Processing...' : (isLoginMode ? 'Sign in' : 'Sign up')}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
-} 
+}
