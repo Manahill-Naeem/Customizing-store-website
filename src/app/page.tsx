@@ -50,14 +50,14 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-black/40 z-10" />
         <Image
           src="/hero-bg.jpg"
-          alt="ARL Laboratory Services"
+          alt="Optivance Inspect"
           fill
           className="object-cover"
           priority
         />
         <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
-            Optivance-Inspect Services
+            Optivance Inspect 
           </h1>
           <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl font-medium drop-shadow-lg">
             Your trusted partner in Non-Destructive Testing, Mechanical Testing, and Storage Tank Services
