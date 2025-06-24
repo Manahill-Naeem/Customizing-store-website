@@ -4,7 +4,7 @@
 
 export default function Footer() {
   const quickLinks = [
-    { name: 'About ARL', href: '/about' },
+    { name: 'About OI Services', href: '/about' },
     { name: 'Our Services', href: '/services' },
     { name: 'Clients and Partners', href: '/clients' },
     { name: 'Contact us', href: '/contact' },
@@ -82,7 +82,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
-            <p className="mb-2">ARL Laboratory Services Pty Ltd</p>
+            <p className="mb-2">Optivance Inspect Services Pty Ltd</p>
             <p className="mb-2">Sydney, NSW</p>
             <p className="mb-2">Phone: +61 XXXX XXX XXX</p>
             <p className="mb-2">Email: info@arllabservices.com.au</p>
