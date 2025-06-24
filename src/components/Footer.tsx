@@ -1,4 +1,6 @@
-import Link from 'next/link';
+// No 'use client' needed as this component primarily displays static links and information.
+
+// import Link from 'next/link'; // next/link ko hata diya gaya hai
 
 export default function Footer() {
   const quickLinks = [
@@ -27,11 +29,11 @@ export default function Footer() {
         { name: 'Detection of Discontinuity', href: '/services/ultrasonic-testing/discontinuity-detection' },
       ]
     },
-    { 
+    {
       name: 'Magnetic Particle Testing',
       href: '/services/magnetic-particle-testing',
     },
-    { 
+    {
       name: 'Dye Penetrant Testing',
       href: '/services/dye-penetrant-testing',
     },
@@ -46,29 +48,29 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="hover:text-blue-400">
+                  <a href={link.href} className="hover:text-blue-400"> {/* Link replaced with <a> */}
                     {link.name}
-                  </Link>
+                  </a> {/* Link replaced with <a> */}
                 </li>
               ))}
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">Major Services</h3>
             <ul className="space-y-4">
               {majorServices.map((service) => (
                 <li key={service.name}>
-                  <Link href={service.href} className="hover:text-blue-400 font-medium">
+                  <a href={service.href} className="hover:text-blue-400 font-medium"> {/* Link replaced with <a> */}
                     {service.name}
-                  </Link>
+                  </a> {/* Link replaced with <a> */}
                   {service.subServices && (
                     <ul className="mt-2 ml-4 space-y-1">
                       {service.subServices.map((subService) => (
                         <li key={subService.name}>
-                          <Link href={subService.href} className="text-gray-400 hover:text-blue-400 text-sm">
+                          <a href={subService.href} className="text-gray-400 hover:text-blue-400 text-sm"> {/* Link replaced with <a> */}
                             {subService.name}
-                          </Link>
+                          </a> {/* Link replaced with <a> */}
                         </li>
                       ))}
                     </ul>
@@ -77,7 +79,7 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
             <p className="mb-2">ARL Laboratory Services Pty Ltd</p>
@@ -86,20 +88,20 @@ export default function Footer() {
             <p className="mb-2">Email: info@arllabservices.com.au</p>
           </div>
         </div>
-        
+
         <div className="mt-8 pt-8 border-t border-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <p>© {new Date().getFullYear()} ARL Laboratory Services Pty Ltd. All rights reserved</p>
             </div>
             <div className="flex space-x-4">
-              <Link href="/policies" className="hover:text-blue-400">Our Policies</Link>
-              <Link href="/copyright" className="hover:text-blue-400">Copyright</Link>
-              <Link href="/privacy" className="hover:text-blue-400">Privacy Policy</Link>
+              <a href="/policies" className="hover:text-blue-400">Our Policies</a> {/* Link replaced with <a> */}
+              <a href="/copyright" className="hover:text-blue-400">Copyright</a> {/* Link replaced with <a> */}
+              <a href="/privacy" className="hover:text-blue-400">Privacy Policy</a> {/* Link replaced with <a> */}
             </div>
           </div>
         </div>
       </div>
     </footer>
   );
-} 
+}

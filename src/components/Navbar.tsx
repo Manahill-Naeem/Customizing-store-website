@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image'; // next/image ko hata diya gaya hai
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +26,7 @@ export default function Navbar() {
     setOpenCategory('');
   };
 
+  // NavLinks array definition
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
@@ -72,7 +73,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav 
+    <nav
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
         scrolled ? 'bg-white shadow-md' : 'bg-transparent'
       }`}
@@ -81,7 +82,8 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <Image
+            {/* 'Image' component ko 'img' tag se replace kiya gaya */}
+            <img
               src="/logo.png"
               alt="ARL Logo"
               width={120}
@@ -89,6 +91,10 @@ export default function Navbar() {
               className={`transition-opacity duration-300 ${
                 scrolled ? 'opacity-100' : 'opacity-0'
               }`}
+              onError={(e) => { // Error handling for the logo image
+                (e.target as HTMLImageElement).srcset = '';
+                (e.target as HTMLImageElement).src = 'https://placehold.co/120x40/cccccc/000000?text=Logo'; // Fallback placeholder
+              }}
             />
           </Link>
 
@@ -102,7 +108,11 @@ export default function Navbar() {
                 >
                   <button
                     onClick={link.dropdown ? toggleServices : undefined}
-                    onDoubleClick={link.dropdown ? () => window.location.href = '/services' : undefined}
+                    onDoubleClick={link.dropdown ? () => { // Ensure window.location.href is handled clientside only
+                        if (typeof window !== 'undefined') {
+                            window.location.href = '/services';
+                        }
+                    } : undefined}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       scrolled
                         ? 'text-gray-900 hover:bg-gray-100'
@@ -122,6 +132,7 @@ export default function Navbar() {
                         </svg>
                       </span>
                     ) : (
+                      // Direct Link for non-dropdown items
                       <Link href={link.href}>{link.label}</Link>
                     )}
                   </button>
@@ -130,7 +141,7 @@ export default function Navbar() {
                       {link.dropdown.map((category) => (
                         <div key={category.id} className="px-4 py-2">
                           <div className="w-full text-left text-sm font-semibold text-white mb-2 flex justify-between items-center group">
-                            <Link 
+                            <Link
                               href={category.href}
                               className="flex-grow hover:text-gray-200 transition-colors duration-200"
                             >
@@ -230,7 +241,11 @@ export default function Navbar() {
                 {link.dropdown ? (
                   <button
                     onClick={toggleServices}
-                    onDoubleClick={() => window.location.href = '/services'}
+                    onDoubleClick={() => { // Ensure window.location.href is handled clientside only
+                        if (typeof window !== 'undefined') {
+                            window.location.href = '/services';
+                        }
+                    }}
                     className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#004488] transition-colors duration-200 flex items-center justify-between"
                   >
                     {link.label}
@@ -257,7 +272,7 @@ export default function Navbar() {
                     {link.dropdown.map((category) => (
                       <div key={category.id} className="py-2">
                         <div className="flex items-center">
-                          <Link 
+                          <Link
                             href={category.href}
                             className="flex-grow px-3 text-sm font-semibold text-white hover:text-gray-200 transition-colors duration-200"
                           >
@@ -304,4 +319,4 @@ export default function Navbar() {
       </div>
     </nav>
   );
-} 
+}
