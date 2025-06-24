@@ -57,7 +57,7 @@ export default function HomePage() {
         />
         <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
-            ARL Laboratory Services
+            Optivance-Inspect Services
           </h1>
           <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl font-medium drop-shadow-lg">
             Your trusted partner in Non-Destructive Testing, Mechanical Testing, and Storage Tank Services
@@ -116,25 +116,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Why ARL Section
-      <section className="py-16 bg-[#003366]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-white">Why ARL</h2>
-          <div className="text-center max-w-4xl mx-auto">
-            <p className="text-white mb-6">
-              ARL Laboratory Services Pty Ltd is an experienced service organization specializing in Non-Destructive testing, 
-              Mechanical Testing and Specialized Inspection Services, providing quality service to leading companies worldwide.
-            </p>
-            <p className="text-white mb-6">
-              ARL Laboratory Services Pty Ltd is 100% Australian owned company and has associate companies in China, Malaysia and Pakistan.
-            </p>
-            <p className="text-white">
-              ARL is self-sufficient and capable to undertake projects anywhere in Australia or Asia also throughout the world with associate companies.
-            </p>
-          </div>
-        </div>
-      </section> */}
 
       {/* Our Major Services */}
       <section className="py-16 bg-[#003366]">
