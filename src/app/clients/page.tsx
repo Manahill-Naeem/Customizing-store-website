@@ -73,7 +73,6 @@ export default function ClientsPage() {
             (e.target as HTMLImageElement).src = 'https://placehold.co/1200x400/cccccc/000000?text=Our+Clients+Header';
           }}
         />
-        {/* Content of the hero section, positioned centrally. */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white">Our Clients</h1>
         </div>
