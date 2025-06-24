@@ -6,7 +6,7 @@ import Layout from '@/components/Layout';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'ARL Laboratory Services',
+  title: 'Optivance Inspect',
   description: 'Providing world-class testing and inspection services to industries across Australia and the Asia Pacific region.',
 };
 
