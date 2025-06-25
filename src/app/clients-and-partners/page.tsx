@@ -32,8 +32,8 @@ export default function ClientsAndPartnersPage() {
               We have the capability to detect error and defects at the initial stages using advanced Non Destructive Testing (NDT) services.
             </p>
             <p className="text-gray-700">
-              ARL's role is to provide support quality controls systems that are currently in place. We also are able to set up risk based 
-              maintenance (RBM), modernisation and investment plans. ARL will manage your maintenance programs and shutdowns.
+              Optivance Inspect's role is to provide support quality controls systems that are currently in place. We also are able to set up risk based 
+              maintenance (RBM), modernisation and investment plans. OI will manage your maintenance programs and shutdowns.
             </p>
           </div>
         </div>
@@ -84,13 +84,12 @@ export default function ClientsAndPartnersPage() {
               </ul>
             </div>
 
-            {/* Australia */}
+            {/* Pakistan */}
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-4 text-[#003366]">Australia</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#003366]">Pakistan</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>Brisbane</li>
                 <li>Newcastle</li>
-                <li>Sydney</li>
                 <li>Wollongong</li>
                 <li>South Australia</li>
                 <li>Perth</li>

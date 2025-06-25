@@ -144,7 +144,7 @@ export default function PartnersPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">Interested in Partnership?</h2>
           <p className="text-gray-600 mb-8">
-            We're always looking to expand our network of partners. If you're interested in exploring partnership opportunities with ARL, please get in touch with us.
+            We're always looking to expand our network of partners. If you're interested in exploring partnership opportunities with OI, please get in touch with us.
           </p>
           <a
             href="/contact"

@@ -122,7 +122,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-8 text-white">NDT Services</h2>
           <p className="text-center text-gray-200 mb-12 max-w-4xl mx-auto font-medium">
-            ARL specializes in comprehensive Non-Destructive Testing (NDT) services. Our expert team utilizes advanced 
+            Optivance Inspect specializes in comprehensive Non-Destructive Testing (NDT) services. Our expert team utilizes advanced 
             techniques and state-of-the-art equipment to ensure the highest quality inspections.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

@@ -25,13 +25,13 @@ export default function AboutPage() {
             <div>
               <h2 className="text-3xl font-bold mb-6">Who We Are</h2>
               <p className="text-gray-600 mb-4">
-                Optivance-Inspect Services Pty Ltd (OI) was established in 1996 consisting of 4 employees in Sydney providing Inspection and Testing services to testing plants. Over the course of time ARL has evolved that today ARL is providing services not only in Non-Destructive and Mechanical testing but also ARL provide world-class specialized services as well.
+                Optivance-Inspect Services Pty Ltd (OI) was established in 1996 consisting of 4 employees in Karachi providing Inspection and Testing services to testing plants. Over the course of time OI has evolved that today OI is providing services not only in Non-Destructive and Mechanical testing but also OI provide world-class specialized services as well.
               </p>
               <p className="text-gray-600 mb-4">
                 OI is a major player Oil, Gas, Chemical, Petrochemical, Cement, Power and Infrastructure sectors throughout Australia and the Asia Pacific region.
               </p>
               <p className="text-gray-600">
-                The company's headquarters is based in Sydney NSW with additional offices in UAE, China and Pakistan. ARL has successfully completed projects in USA, Singapore, Spain, Papua New Guinea and New Zealand.
+                The company's headquarters is based in Karachi with additional offices in UAE, China and Pakistan. OI has successfully completed projects in USA, Singapore, Spain, Papua New Guinea and New Zealand.
               </p>
             </div>
             <div className="relative h-[400px]">

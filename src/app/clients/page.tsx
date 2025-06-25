@@ -8,21 +8,21 @@ export default function ClientsPage() {
       position: 'Project Manager',
       company: 'ABC Engineering',
       image: '/clients/abc-engineering.jpg', // Path to client's image/logo.
-      quote: 'ARL has been an invaluable partner in our projects. Their expertise in NDT and mechanical testing has helped us maintain the highest quality standards.',
+      quote: 'Optivance Inspect has been an invaluable partner in our projects. Their expertise in NDT and mechanical testing has helped us maintain the highest quality standards.',
     },
     {
       name: 'Sarah Johnson',
       position: 'Quality Assurance Director',
       company: 'XYZ Manufacturing',
       image: '/clients/xyz-manufacturing.jpg', // Path to client's image/logo.
-      quote: 'The team at ARL consistently delivers accurate and reliable testing results. Their professionalism and attention to detail are unmatched.',
+      quote: 'The team at Optivance Inspect consistently delivers accurate and reliable testing results. Their professionalism and attention to detail are unmatched.',
     },
     {
       name: 'Michael Chen',
       position: 'Operations Manager',
       company: 'Global Petrochemicals',
       image: '/clients/global-petrochemicals.jpg', // Path to client's image/logo.
-      quote: 'Working with ARL has significantly improved our inspection processes. Their specialized services have helped us identify potential issues before they become problems.',
+      quote: 'Working with OI has significantly improved our inspection processes. Their specialized services have helped us identify potential issues before they become problems.',
     },
   ];
 

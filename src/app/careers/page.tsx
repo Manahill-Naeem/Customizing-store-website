@@ -113,7 +113,7 @@ export default function CareersPage() {
   const jobOpenings = [
     {
       title: 'NDT Inspector',
-      location: 'Sydney, NSW',
+      location: 'Karachi, Pakistan',
       type: 'Full-time',
       description: 'We are looking for an experienced NDT Inspector to join our team.',
       requirements: [

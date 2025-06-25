@@ -54,9 +54,9 @@ export async function POST(request: Request) {
     const clientMailOptions = {
       from: process.env.SMTP_FROM,
       to: formData.email,
-      subject: 'Thank you for contacting ARL Laboratory Services',
+      subject: 'Thank you for contacting Optivance Inspect',
       html: `
-        <h2>Thank you for contacting ARL Laboratory Services</h2>
+        <h2>Thank you for contacting Optivance Inspect</h2>
         <p>Dear ${formData.firstName},</p>
         <p>We have received your message and will get back to you shortly.</p>
         <p>Here's a copy of your message:</p>
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
         <p>${formData.message}</p>
         <br>
         <p>Best regards,</p>
-        <p>ARL Laboratory Services Team</p>
+        <p>Optivance Inspect Team</p>
       `
     };
 

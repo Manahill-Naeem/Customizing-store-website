@@ -80,7 +80,7 @@ export default function Navbar() {
           <a href="/" className="flex-shrink-0">
             <img
               src="/Optivance_Inspect_Logo.png"
-              alt="ARL Logo"
+              alt="Optivance Inspect Logo"
               width={120}
               height={40}
               className="transition-opacity duration-300 opacity-100" // Logo hamesha visible

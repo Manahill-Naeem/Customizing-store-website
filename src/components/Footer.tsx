@@ -83,16 +83,16 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
             <p className="mb-2">Optivance Inspect Services Pty Ltd</p>
-            <p className="mb-2">Sydney, NSW</p>
+            <p className="mb-2">Karachi, Pakistan</p>
             <p className="mb-2">Phone: +61 XXXX XXX XXX</p>
-            <p className="mb-2">Email: info@arllabservices.com.au</p>
+            <p className="mb-2">Email: info@OptivanceInspect.com.au</p>
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <p>© {new Date().getFullYear()} ARL Laboratory Services Pty Ltd. All rights reserved</p>
+              <p>© {new Date().getFullYear()} AOptivance Inspect Pty Ltd. All rights reserved</p>
             </div>
             <div className="flex space-x-4">
               <a href="/policies" className="hover:text-blue-400">Our Policies</a>

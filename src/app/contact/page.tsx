@@ -258,9 +258,9 @@ export default function ContactPage() {
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Head Office</h3>
                   <p className="text-gray-600">
-                    ARL Laboratory Services Pty Ltd<br />
-                    Sydney, NSW<br />
-                    Australia
+                    Optivance Inspect Pty Ltd<br />
+                    Karachi<br />
+                    Pakistan
                   </p>
                 </div>
 
@@ -271,7 +271,7 @@ export default function ContactPage() {
 
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Email</h3>
-                  <p className="text-gray-600">info@arllabservices.com.au</p>
+                  <p className="text-gray-600">info@OptivanceInspect.com.au</p>
                 </div>
 
                 <div>

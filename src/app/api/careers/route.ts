@@ -94,18 +94,18 @@ export async function POST(request: Request) {
     const userMailOptions = {
       from: smtpFrom, // Company's email as sender for confirmation
       to: email, // Applicant's email for confirmation
-      subject: 'Thank you for your application - ARL Laboratory Services',
+      subject: 'Thank you for your application - Optivance Inspect',
       html: `
         <h2>Thank you for your application</h2>
         <p>Dear ${name},</p>
-        <p>We have received your application for the position of ${position} at ARL Laboratory Services.</p>
+        <p>We have received your application for the position of ${position} at Optivance Inspect.</p>
         <p>Our team will review your application and get back to you if your qualifications match our requirements.</p>
         <p>Application Details:</p>
         <ul>
           <li><strong>Position:</strong> ${position}</li>
           <li><strong>Resume:</strong> ${filename}</li>
         </ul>
-        <p>Best regards,<br>ARL Laboratory Services HR Team</p>
+        <p>Best regards,<br>Optivance Inspect HR Team</p>
       `,
     };
 

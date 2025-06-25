@@ -1,6 +1,6 @@
-# ARL Laboratory Services Website
+# Optivance Inspect Website
 
-A modern, responsive website for ARL Laboratory Services built with Next.js and Tailwind CSS.
+A modern, responsive website for Optivance Inspect built with Next.js and Tailwind CSS.
 
 ## Features
 
