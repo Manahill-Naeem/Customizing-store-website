@@ -85,7 +85,7 @@ export default function Footer() {
             <p className="mb-2">Optivance Inspect Services Pty Ltd</p>
             <p className="mb-2">Karachi, Pakistan</p>
             <p className="mb-2">Phone: +61 XXXX XXX XXX</p>
-            <p className="mb-2">Email: info@OptivanceInspect.com.au</p>
+            <p className="mb-2">Email: info@OptivanceInspect.com</p>
           </div>
         </div>
 
