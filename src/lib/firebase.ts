@@ -1,28 +1,16 @@
 
-// Firebase temporarily disabled for build/deployment. Uncomment and configure for production use.
-// import { initializeApp, FirebaseApp } from 'firebase/app';
-// import { getAuth, Auth, signInWithCustomToken, signInAnonymously } from 'firebase/auth';
-// import { getFirestore, Firestore } from 'firebase/firestore';
-// declare const __app_id: string;
-// declare const __firebase_config: string;
-// declare const __initial_auth_token: string | undefined;
-// const appId: string = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-// const firebaseConfig: object = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-// const app: FirebaseApp = initializeApp(firebaseConfig, appId);
-// const auth: Auth = getAuth(app);
-// const db: Firestore = getFirestore(app);
-// const initializeAuth = async () => {
-//   try {
-//     if (typeof __initial_auth_token !== 'undefined') {
-//       await signInWithCustomToken(auth, __initial_auth_token);
-//       console.log("Firebase Auth: Signed in with custom token.");
-//     } else {
-//       await signInAnonymously(auth);
-//       console.log("Firebase Auth: Signed in anonymously.");
-//     }
-//   } catch (error) {
-//     console.error("Firebase Auth initialization error:", error);
-//   }
-// };
-// initializeAuth();
-// export { auth, db, app };
+// Standard client-side Firebase initialization for Next.js (App Router)
+import { initializeApp, getApps } from 'firebase/app';
+
+// TODO: Replace these with your actual Firebase project config values
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+};
+
+// Prevent re-initialization in Next.js Fast Refresh
+export const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
