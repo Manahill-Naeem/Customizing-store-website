@@ -82,7 +82,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
-            <p className="mb-2">Optivance Inspect Services Pty Ltd</p>
+            <p className="mb-2">Optivance Inspect Pty Ltd</p>
             <p className="mb-2">Karachi, Pakistan</p>
             <p className="mb-2">Phone: +92 XXX XXXXXXX</p>
             <p className="mb-2">Email: info@OptivanceInspect.com</p>
