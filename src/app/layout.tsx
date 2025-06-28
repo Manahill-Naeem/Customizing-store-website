@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
   title: 'Optivance Inspect',
   description: 'Your trusted partner in Non-Destructive Testing, Mechanical Testing, and Storage Tank Services',
-  other: {
-    'google-site-verification': 'CesXuw3k8pSw6ifZCYwjPd3abWrCXo6ZJeoffBjTg2c',
+  verification: {
+    google: 'CesXuw3k8pSw6ifZCYwjPd3abWrCXo6ZJeoffBjTg2c',
   },
 };
 
