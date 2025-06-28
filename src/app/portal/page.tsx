@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'; // For redirection after login
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { app } from '../../lib/firebase'; // Corrected import path for firebase
+import { app } from '../../../lib/firebase'; // Corrected import path for firebase
 
 export default function PortalLoginPage() {
   const [email, setEmail] = useState<string>('');
