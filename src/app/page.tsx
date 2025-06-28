@@ -3,13 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export const metadata = {
-  title: 'Optivance Inspect',
-  description: 'Your trusted partner in Non-Destructive Testing, Mechanical Testing, and Storage Tank Services',
-  verification: {
-    google: 'CesXuw3k8pSw6ifZCYwjPd3abWrCXo6ZJeoffBjTg2c',
-  },
-};
+
 
 export default function HomePage() {
   const majorServices = [

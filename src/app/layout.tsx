@@ -7,7 +7,10 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Optivance Inspect',
-  description: 'Providing world-class testing and inspection services to industries across Australia and the Asia Pacific region.',
+  description: 'Your trusted partner in Non-Destructive Testing, Mechanical Testing, and Storage Tank Services',
+  verification: {
+    google: 'CesXuw3k8pSw6ifZCYwjPd3abWrCXo6ZJeoffBjTg2c',
+  },
 };
 
 export default function RootLayout({
