@@ -1,6 +1,6 @@
 // src/app/clients/page.tsx
 // onError prop removed from <img> tags to resolve "Event handlers cannot be passed to Client Component props" during static generation.
-
+'use client';
 export default function ClientsPage() {
   const testimonials = [
     {
