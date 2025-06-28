@@ -125,7 +125,7 @@ export default function CareersPage() {
     },
     {
       title: 'Mechanical Testing Engineer',
-      location: 'Melbourne, VIC',
+      location: 'Karachi, Pakistan',
       type: 'Full-time',
       description: 'Join our mechanical testing team as a Testing Engineer.',
       requirements: [
@@ -137,7 +137,7 @@ export default function CareersPage() {
     },
     {
       title: 'Project Manager',
-      location: 'Brisbane, QLD',
+      location: 'Karachi, Pakistan',
       type: 'Full-time',
       description: 'Seeking an experienced Project Manager for our inspection projects.',
       requirements: [
