@@ -258,7 +258,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Head Office</h3>
                   <p className="text-gray-600">
-                    Optivance Inspect Pty Ltd<br />
+                    SB-157 sector 4b schema 41 surjani town khi<br />
                     Karachi<br />
                     Pakistan
                   </p>
@@ -266,12 +266,12 @@ export default function ContactPage() {
 
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Phone</h3>
-                  <p className="text-gray-600">+61 XXXX XXX XXX</p>
+                  <p className="text-gray-600">+92 337 2497137</p>
                 </div>
 
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Email</h3>
-                  <p className="text-gray-600">info@OptivanceInspect.com</p>
+                  <p className="text-gray-600">OptivanceInspection@gmail.com</p>
                 </div>
 
                 <div>
