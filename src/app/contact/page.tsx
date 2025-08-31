@@ -1,291 +1,156 @@
-'use client';
+// frontend/src/app/contact/page.tsx
+'use client'; // Keep this directive as it uses useState
 
-import { useState } from 'react';
-// import Image from 'next/image'; // next/image ko hata diya gaya hai
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin } from 'lucide-react'; // Icons for contact info
+import { submitContactForm } from '@/lib/api';
+
+// metadata export has been moved to frontend/src/app/contact/layout.tsx
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    firstName: '', // Changed from 'name'
-    lastName: '',  // Added
+    name: '',
     email: '',
-    phone: '',
-    company: '',
-    queryType: '', // Changed from 'subject'
+    subject: '',
     message: '',
   });
-
-  const [status, setStatus] = useState<{
-    type: 'success' | 'error' | null;
-    message: string;
-  }>({
-    type: null,
-    message: '',
-  });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+  const [messageType, setMessageType] = useState<'success' | 'error' | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setStatus({ type: null, message: '' });
+    setSubmitMessage(null);
+    setMessageType(null);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setStatus({
-          type: 'success',
-          message: data.message || 'Thank you for your message! We will get back to you soon.',
-        });
-        setFormData({ // Reset form after successful submission
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          company: '',
-          queryType: '',
-          message: '',
-        });
-      } else {
-        setStatus({
-          type: 'error',
-          message: data.message || 'Something went wrong. Please try again.',
-        });
-      }
-    } catch (error) {
-      console.error("Frontend submission error:", error);
-      setStatus({
-        type: 'error',
-        message: 'Failed to send message. Please try again later.',
-      });
+      // Use the API function to submit the contact form
+      const data = await submitContactForm(formData);
+      
+      setSubmitMessage(data.message || 'Your message has been received! We will get back to you shortly.');
+      setMessageType('success');
+      setFormData({ name: '', email: '', subject: '', message: '' }); // Clear form
+    } catch (error: any) {
+      console.error('Form submission error:', error);
+      setSubmitMessage(error.message || 'Failed to send message. Please try again or contact us directly.');
+      setMessageType('error');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[400px] w-full overflow-hidden"> {/* Added w-full and overflow-hidden for responsiveness */}
-        <div className="absolute inset-0 bg-black/50 z-10" />
-        <img // 'Image' component ko 'img' tag se replace kiya gaya
-          src="/hero-bg.jpg" // Make sure this image path is correct or replace with a placeholder
-          alt="Contact Us"
-          className="object-cover w-full h-full" // width aur height 100% set ki gai hain
-          onError={(e) => { // Error handling for image
-            (e.target as HTMLImageElement).srcset = ''; // Clear srcset to prevent infinite loops
-            (e.target as HTMLImageElement).src = 'https://placehold.co/1200x400/cccccc/000000?text=Contact+Us'; // Placeholder image
-          }}
-        />
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white">Contact Us</h1>
-        </div>
-      </section>
+    <div className="min-h-[calc(100vh-16rem)] bg-gradient-to-br from-primary-50 to-primary-100 py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 md:p-10 lg:p-12">
+        {/* Corrected color class for h1 */}
+        <h1 className="text-4xl md:text-5xl font-extrabold text-[#7A4E7A] text-center mb-6">
+          Contact Us
+        </h1>
+        <p className="text-lg text-gray-700 text-center mb-10">
+          For your questions, suggestions, or custom order inquiries, we are always available. Contact us using the information below.
+        </p>
 
-      {/* Contact Form and Info Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
-              {status.type && (
-                <div
-                  className={`p-4 mb-6 rounded-md ${
-                    status.type === 'success'
-                      ? 'bg-green-100 text-green-700'
-                      : 'bg-red-100 text-red-700'
-                  }`}
-                >
-                  {status.message}
-                </div>
-              )}
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* First Name Field */}
-                <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                    First Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    required
-                  />
-                </div>
-
-                {/* Last Name Field */}
-                <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                    Last Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    required
-                  />
-                </div>
-
-                {/* Email Field */}
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    required
-                  />
-                </div>
-
-                {/* Phone Field */}
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                    Phone *
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    required
-                  />
-                </div>
-
-                {/* Company Field */}
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-700">
-                    Company
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-
-                {/* Query Type (Subject) Field */}
-                <div>
-                  <label htmlFor="queryType" className="block text-sm font-medium text-gray-700">
-                    Query Type *
-                  </label>
-                  <select
-                    id="queryType"
-                    name="queryType"
-                    value={formData.queryType}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    required
-                  >
-                    <option value="">Select a query type</option>
-                    <option value="NDT Services">NDT Services</option>
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Careers">Careers</option>
-                    <option value="Partnerships">Partnerships</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-
-                {/* Message Field */}
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    required
-                  />
-                </div>
-
-                {/* Submit Button */}
-                <div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                      isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                    }`}
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </div>
-              </form>
-            </div>
-
-            {/* Contact Information (No changes here, assuming this is static) */}
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Contact Information</h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Head Office</h3>
-                  <p className="text-gray-600">
-                    SB-157 sector 4b schema 41 surjani town khi<br />
-                    Karachi<br />
-                    Pakistan
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Phone</h3>
-                  <p className="text-gray-600">+92 337 2497137</p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Email</h3>
-                  <p className="text-gray-600">OptivanceInspection@gmail.com</p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Business Hours</h3>
-                  <p className="text-gray-600">
-                    Monday - Friday: 8:00 AM - 5:00 PM<br />
-                    Saturday - Sunday: Closed
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+          {/* Contact Info */}
+          <div className="flex flex-col items-center text-center">
+            <Mail className="w-12 h-12 text-[#4B2B4F] mb-4" />
+            <h2 className="text-2xl font-bold text-[#4B2B4F] mb-2">Email</h2>
+            <p className="text-lg text-gray-600">
+              <a href="mailto:craftedwhispers34@gmail.com" className="hover:text-[#7A4E7A] transition-colors">craftedwhispers@gmail.com</a>
+            </p>
+          </div>
+          <div className="flex flex-col items-center text-center">
+            <Phone className="w-12 h-12 text-[#4B2B4F] mb-4" />
+            <h2 className="text-2xl font-bold text-[#4B2B4F] mb-2">Phone</h2>
+            <p className="text-lg text-gray-600">
+              <a href="tel:+923XXXXXXXXX" className="hover:text-[#7A4E7A] transition-colors">+92 3180305269</a>
+            </p>
+            <p className="text-sm text-gray-500 mt-1">(Working hours: Mon-Fri, 9 AM - 5 PM PKT)</p>
+          </div>
+          <div className="md:col-span-2 flex flex-col items-center text-center">
+            <MapPin className="w-12 h-12 text-[#4B2B4F] mb-4" />
+            <h2 className="text-2xl font-bold text-[#7A4E7A] mb-2">Our Address</h2>
+            <p className="text-lg text-gray-600">
+              Karachi, Pakistan
+            </p>
+            <p className="text-sm text-gray-500 mt-1">(Online store, appointments by request)</p>
           </div>
         </div>
-      </section>
+
+        {/* Contact Form */}
+        <section>
+          <h2 className="text-3xl font-bold text-[#7A4E7A] mb-6 text-center">
+            Send Us a Message
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-[#7A4E7A] focus:border-[#7A4E7A]"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-[#7A4E7A] focus:border-[#7A4E7A]"
+              />
+            </div>
+            <div>
+              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+              <input
+                type="text"
+                name="subject"
+                id="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-[#7A4E7A] focus:border-[#7A4E7A]"
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+              <textarea
+                name="message"
+                id="message"
+                rows={5}
+                value={formData.message}
+                onChange={handleChange}
+                required
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-primary-500 focus:border-primary-500"
+              ></textarea>
+            </div>
+            {submitMessage && (
+              <div className={`p-3 rounded-md ${messageType === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                {submitMessage}
+              </div>
+            )}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full flex items-center justify-center rounded-md border border-transparent bg-[#7A4E7A] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#6B3E6B] transition disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? 'Sending Message...' : 'Send Message'}
+            </button>
+          </form>
+        </section>
+      </div>
     </div>
   );
 }
