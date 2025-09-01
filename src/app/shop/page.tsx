@@ -32,7 +32,7 @@ const showcaseItems = [
     description: "A personalized Groom's nikkah pen with golden name plate, a sleek black bow, and a beautifula peacock feathers",
     price: 700,
     imageUrl: "/products/groom-pen.jpeg",
-    category: "Pearl Collection",
+    category: "Wedding Collection",
     isCompleted: true
   },
   {
@@ -50,7 +50,7 @@ const showcaseItems = [
     description: "A beautifully arranged gift basket filled with an assortment of goodies, perfect for any occasion.",
     price: 150,
     imageUrl: "/products/goodie-box.jpeg",
-    category: "Crystal Collection",
+    category: "Gift Collection",
     isCompleted: true
   },
   {
@@ -59,7 +59,7 @@ const showcaseItems = [
     description: "A stunning gift bouquet featuring a mix of makeup items and accessories, perfect for any beauty enthusiast.",
     price: 2000,
     imageUrl: "/products/makeup-bouquet.jpeg",
-    category: "Pearl Collection",
+    category: "Bouquet Collection",
     isCompleted: true
   },
   {
@@ -77,7 +77,7 @@ const showcaseItems = [
     description: "Carfted with maroon fabric  and features a small internal light to illuminate gift inside, and deligate latkans on the side.",
     price: 5000,
     imageUrl: "/products/palki-tray.jpeg",
-    category: "Pearl Collection",
+    category: "Wedding Collection",
     isCompleted: true
   },
   {
@@ -86,7 +86,7 @@ const showcaseItems = [
     description: "This set inscribed with Qabool Hai, features a handcrafted tray and a matching pen with feathers",
     price: 2500,
     imageUrl: "/products/nikkahpen-tray2.jpeg",
-    category: "Pearl Collection",
+    category: "Wedding Collection",
     isCompleted: true
   },
 ];
