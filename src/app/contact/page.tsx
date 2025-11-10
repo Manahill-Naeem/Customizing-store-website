@@ -61,7 +61,7 @@ export default function ContactPage() {
             <Mail className="w-12 h-12 text-[#4B2B4F] mb-4" />
             <h2 className="text-2xl font-bold text-[#4B2B4F] mb-2">Email</h2>
             <p className="text-lg text-gray-600">
-              <a href="mailto:craftedwhispers34@gmail.com" className="hover:text-[#7A4E7A] transition-colors">craftedwhispers@gmail.com</a>
+              <a href="mailto:craftedwhisper@gmail.com" className="hover:text-[#7A4E7A] transition-colors">craftedwhisper@gmail.com</a>
             </p>
           </div>
           <div className="flex flex-col items-center text-center">
