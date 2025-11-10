@@ -56,7 +56,7 @@ export default function Footer() {
         <div className="col-span-1">
           <h3 className="text-xl font-bold text-gold mb-4">Get in Touch</h3>
           <p className="text-sm text-gray-300">
-            Email: craftedwhispers34@gmail.com<br />
+            Email: craftedwhisper@gmail.com<br />
             Phone: +92 3180305269<br />
             Address: Karachi, Pakistan
           </p>
